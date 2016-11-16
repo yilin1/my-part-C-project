@@ -1,0 +1,17 @@
+vdpol<-function(t,y,mu) {
+	list(c(
+	y[2],
+	mu*(1-y[1]^2)*y[2]-y[1]
+	))
+}
+library(deSolve)
+yini <- c(y1=2,  y2=0) 
+ stiff <- ode(y = yini, func = vdpol, times = 0:3000, parms = 1000) 
+ nonstiff <- ode(y = yini, func = vdpol, times = seq(0, 30, by = 0.01), parms=1)
+
+ plot(stiff, type = "l", which = "y1", lwd = 2, ylab = "y", main = "IVP ODE, stiff")
+ hold on
+ plot(nonstiff, type = "l", which = "y1", lwd = 2, ylab = "y", main = "IVP ODE, nonstiff") 
+ 
+ #this code is copied from website.
+ 
