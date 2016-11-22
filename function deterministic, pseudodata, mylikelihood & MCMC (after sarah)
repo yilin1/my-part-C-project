@@ -1,5 +1,5 @@
-pseudodata=function(i1=0.2,i2=0.2,i3=0.2,i4=0.2,i5=0.2,c1=0.04,c2=0.8,c3=0.19,c4=0.9,c5=0.2,c6=0.88,c7=0.4,c8=0.9,t=30,tby=0.1){
-##  Simulate pesudo-data first: 
+deterministic=function(i1=0.2,i2=0.2,i3=0.2,i4=0.2,i5=0.2,c1=0.04,c2=0.8,c3=0.19,c4=0.9,c5=0.2,c6=0.88,c7=0.4,c8=0.9,t=30,tby=0.1){
+ 
 # kit to solve Sys of ODE's
 pol<-function(t,y,mu){
 	list(c(
@@ -15,15 +15,36 @@ yini<-c(w1=i1,w2=i2,w3=i3,w4=i4,w5=i5)
 
 # simulated "data": datat
 dt<-ode(y=yini,func=pol,times=seq(0,t,by=tby),parms=c(c1,c2,c3,c4,c5,c6,c7,c8)) 
-datat=dt[,6]/(dt[,6]+2*dt[,4])+rnorm(1,sd=0.1) ## assuming data variance to be 0.1, assuming normal error
-return (datat)
+deterministic=dt[,6]/(dt[,6]+2*dt[,4])
+return (deterministic)
 }
 
-myLikelihood=function(a1,t,tby,datat,erv1){
+pseudodata=function(i1=0.2,i2=0.2,i3=0.2,i4=0.2,i5=0.2,c1=0.04,c2=0.8,c3=0.19,c4=0.9,c5=0.2,c6=0.88,c7=0.4,c8=0.9,t=30,tby=0.1){
+##  Simulate pesudo-data first: 
+# kit to solve Sys of ODE's
+pol<-function(t,y,mu){
+	list(c(
+	mu[1]*y[1]*(1-(y[1]+y[2]+y[3]+y[4]+y[5]))-mu[2]*y[1],
+	mu[2]*y[1]+mu[3]*y[2]*(1-(y[1]+y[2]+y[3]+y[4]+y[5]))-mu[4]*y[2],
+	mu[4]*y[2]-mu[5]*y[3],
+	mu[6]*y[4]*(1-(y[1]+y[2]+y[3]+y[4]+y[5]))-mu[7]*y[4],
+	mu[7]*y[4]-mu[8]*y[5]
+	))
+}
+
+yini<-c(w1=i1,w2=i2,w3=i3,w4=i4,w5=i5)
+
+# simulated "data": psdata
+dt<-ode(y=yini,func=pol,times=seq(0,t,by=tby),parms=c(c1,c2,c3,c4,c5,c6,c7,c8)) 
+psdata=dt[,6]/(dt[,6]+2*dt[,4])+rnorm(1,sd=0.1) ## assuming data variance to be 0.1, assuming normal error
+return (psdata)
+}
+
+myLikelihood=function(a1,t,tby,psdata,erv1){ ## this is calculating the likelihood given the data: psdata for the parameter c8 to be a1
 	l=0
-	gt1=pseudodata(c8=a1,t=t,tby=tby)
+	gt1=deterministic(c8=a1,t=t,tby=tby)
 	for (tmpts in 1:(t/tby)) {
-   lp=dnorm(gt1[tmpts], datat[tmpts], erv1,log=TRUE) 
+   lp=dnorm(psdata[tmpts],gt1[tmpts],erv1,log=TRUE) 
    l=l+lp
   }
   return(l)
