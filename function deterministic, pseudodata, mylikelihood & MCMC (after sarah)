@@ -35,7 +35,7 @@ yini<-c(w1=i1,w2=i2,w3=i3,w4=i4,w5=i5)
 
 # simulated "data": psdata
 dt<-ode(y=yini,func=pol,times=seq(0,t,by=tby),parms=c(c1,c2,c3,c4,c5,c6,c7,c8)) 
-psdata=dt[,6]/(dt[,6]+2*dt[,4])+rnorm(1,sd=0.1) ## assuming data variance to be 0.1, assuming normal error
+psdata=dt[,6]/(dt[,6]+2*dt[,4])+rnorm(1,mean=0,sd=0.1) ## assuming data variance to be 0.1, assuming normal error
 return (psdata)
 }
 
