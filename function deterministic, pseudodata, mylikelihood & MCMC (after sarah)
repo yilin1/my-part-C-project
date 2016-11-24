@@ -18,26 +18,19 @@ deterministic=dt[,6]/(dt[,6]+2*dt[,4])
 return (deterministic)
 }
 
-pseudodata=function(i1=0.2,i2=0.2,i3=0.2,i4=0.2,i5=0.2,c1=0.04,c2=0.8,c3=0.19,c4=0.9,c5=0.2,c6=0.88,c7=0.4,c8=0.9,t=30,tby=0.1){
-##  Simulate pesudo-data first: 
-# kit to solve Sys of ODE's
-pol<-function(t,y,mu){
-	list(c(
-	mu[1]*y[1]*(1-(y[1]+y[2]+y[3]+y[4]+y[5]))-mu[2]*y[1],
-	mu[2]*y[1]+mu[3]*y[2]*(1-(y[1]+y[2]+y[3]+y[4]+y[5]))-mu[4]*y[2],
-	mu[4]*y[2]-mu[5]*y[3],
-	mu[6]*y[4]*(1-(y[1]+y[2]+y[3]+y[4]+y[5]))-mu[7]*y[4],
-	mu[7]*y[4]-mu[8]*y[5]
-	))
+noise=function(dt,sf=0.5,sd=0.1){ #this function introduce a normal error (mean 0, sd=sd)into some determinstic output dt, scaled by factor sf. (expecting sf between 0 and 1)
+	for (i in 1:length(dt)){
+		dt[i]=dt[i]+sf*rnorm(1,mean=0,sd=sd)		
+	}
+	return(dt)	
 }
 
-yini<-c(w1=i1,w2=i2,w3=i3,w4=i4,w5=i5)
-
-# simulated "data": psdata
-dt<-ode(y=yini,func=pol,times=seq(0,t,by=tby),parms=c(c1,c2,c3,c4,c5,c6,c7,c8)) 
-psdata=dt[,6]/(dt[,6]+2*dt[,4])+rnorm(1,mean=0,sd=0.1) ## assuming data variance to be 0.1, assuming normal error
+pseudodata=function(i1=0.2,i2=0.2,i3=0.2,i4=0.2,i5=0.2,c1=0.04,c2=0.8,c3=0.19,c4=0.9,c5=0.2,c6=0.88,c7=0.4,c8=0.9,t=30,tby=0.1)
+{   	 a=deterministic(i1=i1,i2=i2,i3=i3,i4=i4,i5=i5,   c1=c1,c2=c2,c3=c3,c4=c4,c5=c5,c6=c6,c7=c7,c8=c8,t=t,tby=tby)
+	psdata=noise(a) 
 return (psdata)
 }
+
 
 
 
