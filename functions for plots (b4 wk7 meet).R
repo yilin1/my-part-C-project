@@ -18,7 +18,8 @@ traceplot=function(a){ # a is the output of MCMC, the sequence of candidate for 
 	plot(a,type='l',xlab="MCMC iteration", ylab="a1", main="trace plot")
 }
 
-pvalcpa=function(psdata,t=30,tby=0.1,m){# psdata is the real data, t and tby are used to generate number of data points using t/tby, m specifies which parameter to focus on.
+pvalcpa=function(psdata,t=30,tby=0.1,m){# psdata is the real data, t and tby are used to generate number of data points using t/tby, m specifies which parameter to focus on. this generates plots for
+	# different values of the interested parameter from 0 to 1 (in lines) alongside real data (in dots)
 
 if (m==1){
 	plot(psdata,col='red',main='i1')
