@@ -28,7 +28,7 @@ if (m==1){
 if (m==2){
 	plot(psdata,col='red',main='i2')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(determinisic(i2=p, t=t, tby=tby))
+	lines(deterministic(i2=p, t=t, tby=tby))
 }}
 if (m==3){
 	plot(psdata,col='red',main='i3')
@@ -38,52 +38,52 @@ if (m==3){
 if (m==4){
 	plot(psdata,col='red',main='i4')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(determinisitic(i4=p, t=t, tby=tby))
+	lines(deterministic(i4=p, t=t, tby=tby))
 }}
 if (m==5){
 	plot(psdata,col='red',main='i5')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(determinisitic(i5=p, t=t, tby=tby))
+	lines(deterministic(i5=p, t=t, tby=tby))
 }}
 if (m==6){
 	plot(psdata,col='red',main='c1')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(determinisitic(c1=p, t=t, tby=tby))
+	lines(deterministic(c1=p, t=t, tby=tby))
 }}
 if (m==7){
 	plot(psdata,col='red',main='c2')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(determinisitic(c2=p, t=t, tby=tby))
+	lines(deterministic(c2=p, t=t, tby=tby))
 }}
 if (m==8){
 	plot(psdata,col='red',main='c3')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(determinisitic(c3=p, t=t, tby=tby))
+	lines(deterministic(c3=p, t=t, tby=tby))
 }}
 if (m==9){
 	plot(psdata,col='red',main='c4')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(determinisitic(c4=p, t=t, tby=tby))
+	lines(deterministic(c4=p, t=t, tby=tby))
 }}
 if (m==10){
 	plot(psdata,col='red',main='c5')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(determinisitic(c5=p, t=t, tby=tby))
+	lines(deterministic(c5=p, t=t, tby=tby))
 }}
 if (m==11){
 	plot(psdata,col='red',main='c6')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(determinisitic(c6=p, t=t, tby=tby))
+	lines(deterministic(c6=p, t=t, tby=tby))
 }}
 if (m==12){
 	plot(psdata,col='red',main='c7')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(determinisitic(c7=p, t=t, tby=tby))
+	lines(deterministic(c7=p, t=t, tby=tby))
 }}
 if (m==13){
 	plot(psdata,col='red',main='c8')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(determinisitic(c8=p, t=t, tby=tby))
+	lines(deterministic(c8=p, t=t, tby=tby))
 }}
 }
 
