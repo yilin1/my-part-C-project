@@ -23,67 +23,67 @@ pvalcpa=function(psdata,t=30,tby=0.1,m){# psdata is the real data, t and tby are
 if (m==1){
 	plot(psdata,col='red',main='i1')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(i1=p, t=t, tby=tby))
+	lines(deterministic(i1=p, t=t, tby=tby))
 }}
 if (m==2){
 	plot(psdata,col='red',main='i2')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(i2=p, t=t, tby=tby))
+	lines(determinisic(i2=p, t=t, tby=tby))
 }}
 if (m==3){
 	plot(psdata,col='red',main='i3')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(i3=p, t=t, tby=tby))
+	lines(deterministic(i3=p, t=t, tby=tby))
 }}
 if (m==4){
 	plot(psdata,col='red',main='i4')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(i4=p, t=t, tby=tby))
+	lines(determinisitic(i4=p, t=t, tby=tby))
 }}
 if (m==5){
 	plot(psdata,col='red',main='i5')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(i5=p, t=t, tby=tby))
+	lines(determinisitic(i5=p, t=t, tby=tby))
 }}
 if (m==6){
 	plot(psdata,col='red',main='c1')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(c1=p, t=t, tby=tby))
+	lines(determinisitic(c1=p, t=t, tby=tby))
 }}
 if (m==7){
 	plot(psdata,col='red',main='c2')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(c2=p, t=t, tby=tby))
+	lines(determinisitic(c2=p, t=t, tby=tby))
 }}
 if (m==8){
 	plot(psdata,col='red',main='c3')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(c3=p, t=t, tby=tby))
+	lines(determinisitic(c3=p, t=t, tby=tby))
 }}
 if (m==9){
 	plot(psdata,col='red',main='c4')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(c4=p, t=t, tby=tby))
+	lines(determinisitic(c4=p, t=t, tby=tby))
 }}
 if (m==10){
 	plot(psdata,col='red',main='c5')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(c5=p, t=t, tby=tby))
+	lines(determinisitic(c5=p, t=t, tby=tby))
 }}
 if (m==11){
 	plot(psdata,col='red',main='c6')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(c6=p, t=t, tby=tby))
+	lines(determinisitic(c6=p, t=t, tby=tby))
 }}
 if (m==12){
 	plot(psdata,col='red',main='c7')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(c7=p, t=t, tby=tby))
+	lines(determinisitic(c7=p, t=t, tby=tby))
 }}
 if (m==13){
 	plot(psdata,col='red',main='c8')
 	for (p in seq(0.1,0.9,by=0.1)){
-	lines(pseudodata(c8=p, t=t, tby=tby))
+	lines(determinisitic(c8=p, t=t, tby=tby))
 }}
 }
 
