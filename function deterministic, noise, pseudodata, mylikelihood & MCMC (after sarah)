@@ -36,7 +36,7 @@ return (psdata)
 
 
 
-myLikelihood=function(m,a1,t,tby,psdata,erv1){ ## this is calculating the likelihood given the real data: psdata for the parameter indexed m to be a1,m is an interger between 1 and 13 inclusive
+myloglk=function(m,a1,t,tby,psdata,erv1){ ## this is calculating the likelihood given the real data: psdata for the parameter indexed m to be a1,m is an interger between 1 and 13 inclusive
 	l=0
 	if (m==1){
 		gt1=deterministic(i1=a1,t=t,tby=tby)	
@@ -96,7 +96,7 @@ a1=runif(1)
 a[1]=a1
  
 # log-likelihood l for datat using guess:
-lold=myLikelihood(m,a1,t,tby,psdata,erv1)
+lold=myloglk(m,a1,t,tby,psdata,erv1)
  
 # Using for-loop
 for (MCtime in 1:(n-1)){
@@ -108,7 +108,7 @@ if (a2<0 || a2>1){
 } else {
 
 	# to compute log-likelihood based on guess a2:
-	lnew=myLikelihood(m,a2,t,tby,psdata,erv1)
+	lnew=myloglk(m,a2,t,tby,psdata,erv1)
 
  
 ## to compute M-H
