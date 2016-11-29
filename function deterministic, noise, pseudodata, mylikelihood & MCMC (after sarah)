@@ -18,7 +18,7 @@ deterministic=dt[,6]/(dt[,6]+2*dt[,4])
 return (deterministic)
 }
 
-noise=function(dt,sf=0.1,erv1=0.1){ #this function introduce a normal error (mean 0, erv1=erv1)into some determinstic output dt, scaled by factor sf. (expecting sf between 0 and 1)
+noise=function(dt,sf=0.1,erv1=0.1){ #this function introduce a normal error (mean 0, sd=sqrt(erv1))into some determinstic output dt, scaled by factor sf. (expecting sf between 0 and 1)
 	for (i in 1:length(dt)){
 		dt[i]=dt[i]+sf*rnorm(1,mean=0,sd=sqrt(erv1))		
 	}
@@ -78,7 +78,7 @@ myloglk=function(m,a1,t,tby,psdata,erv1){ ## this is calculating the likelihood 
 		gt1=deterministic(c8=a1,t=t,tby=tby)
 	}
 	for (tmpts in 1:(t/tby)) {
-   lp=dnorm(psdata[tmpts],gt1[tmpts],erv1,log=TRUE) 
+   lp=dnorm(psdata[tmpts],gt1[tmpts],sd=sqrt(erv1),log=TRUE) 
    l=l+lp
   }
   return(l)
