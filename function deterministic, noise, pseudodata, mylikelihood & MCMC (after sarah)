@@ -86,7 +86,7 @@ myloglk=function(m,a1,t,tby,psdata,erv1){ ## this is calculating the likelihood 
 }
 
 ## function to perform MCMC based on previous functions: 
-myMCMC=function(psdata,erv1=0.1,erv2=0.1,t=30,tby=0.1,n=1000,m=13){ #psdata is the real data to deal with; erv1 is the noise variance, erv2 is the variance of proposal distribution; n is the number of times of MCMC.
+myMCMC=function(psdata,erv1=0.1,erv2=0.1,t=30,tby=0.1,n=1000,m){ #psdata is the real data to deal with; erv1 is the noise variance, erv2 is the variance of proposal distribution; n is the number of times of MCMC.
 # m is the index of the parameter to infer.
 
 ##  now start implementing MCMC:
