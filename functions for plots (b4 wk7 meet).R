@@ -2,10 +2,10 @@
 datat=pseudodata(t=30,tby=1,c8=0.5)
 
 ## plot of log-likelihood
-loglkplot=function(m,psdata,t=30,tby=1){ # m is the index of the parameter of interest
+loglkplot=function(m,psdata,t=30,tby=1,erv1=0.1){ # m is the index of the parameter of interest
 # psdata is the real data to compute the log-likelihood of the indexed parameter
 
-likvec=lapply(seq(0.01,0.99,by=0.001),function(i) myloglk(m,a1=i,t=t,tby=tby,psdata,erv1=0.1))
+likvec=lapply(seq(0.01,0.99,by=0.001),function(i) myloglk(m,a1=i,t=t,tby=tby,psdata,erv1=erv1))
 
 llp=plot(seq(0.01,0.99,by=0.001),as.numeric(likvec), xlab="par", ylab="log-likelihood",main=paste("m=",m))
 return(llp)
