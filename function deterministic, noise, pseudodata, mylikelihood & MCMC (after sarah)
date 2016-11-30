@@ -1,6 +1,7 @@
 deterministic=function(i1=0.2,i2=0.2,i3=0.2,i4=0.2,i5=0.2,c1=0.04,c2=0.8,c3=0.19,c4=0.9,c5=0.2,c6=0.88,c7=0.4,c8=0.9,t=30,tby=0.1){
  # t is the maximum timepoint of the variable, tby is the numerical propagation time lap
 # kit to solve Sys of ODE's
+library(deSolve)
 pol<-function(t,y,mu){
 	list(c(
 	mu[1]*y[1]*(1-(y[1]+y[2]+y[3]+y[4]+y[5]))-mu[2]*y[1],
