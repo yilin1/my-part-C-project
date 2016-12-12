@@ -1,5 +1,5 @@
 # 4-chain plot function
-chainplot=function(psdata, erv1=0.1, erv2=0.1, t=30, tby=0.1, n=1000, m){# this gives the 4-chain plot, psdata is the real data to deal with
+chainplot=function(psdata, erv1=0.1, erv2=0.1, t=50, tby=1, n=1000, m){# this gives the 4-chain plot, psdata is the real data to deal with
 	chain1=myMCMC(psdata, erv1=erv1, erv2=erv2, t=t, tby=tby, n=n, m=m)
 	chain2=myMCMC(psdata, erv1=erv1, erv2=erv2, t=t, tby=tby, n=n, m=m)
 	chain3=myMCMC(psdata, erv1=erv1, erv2=erv2, t=t, tby=tby, n=n, m=m)
@@ -25,7 +25,7 @@ grplot=function(a1,a2){ #this gives the gelman & rubin plot of a1, a2, where a1 
 }
 
 # plot deterministic and noised data on top of it:
-psplusdt=function(m,a ,t=30,tby=0.1){# m is the index of the parameter, a is the value of the indexed parameter to take.
+psplusdt=function(m,a ,t=50,tby=1){# m is the index of the parameter, a is the value of the indexed parameter to take.
 	if (m==1){
 		p=pseudodata(i1=a,t=t,tby=tby)
        d=deterministic(i1=a, t=t,tby=tby)
