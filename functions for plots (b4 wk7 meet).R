@@ -1,8 +1,8 @@
 
-datat=pseudodata(t=30,tby=1,c8=0.5)
+datat=pseudodata(t=50,tby=1,c8=0.5)
 
 ## plot of log-likelihood
-loglkplot=function(m,psdata,t=30,tby=1,erv1=0.1){ # m is the index of the parameter of interest
+loglkplot=function(m,psdata,t=50,tby=1,erv1=0.1){ # m is the index of the parameter of interest
 # psdata is the real data to compute the log-likelihood of the indexed parameter
 
 likvec=lapply(seq(0.01,0.99,by=0.001),function(i) myloglk(m,a1=i,t=t,tby=tby,psdata,erv1=erv1))
@@ -18,7 +18,7 @@ traceplot=function(a){ # a is the output of myMCMC, the sequence of candidate fo
 }
 	     
 # plot of deterministic trajectories when parameter varies
-pvalcpa=function(psdata,t=30,tby=0.1,m){# psdata is the real data, t and tby are used to generate number of data points using t/tby, m specifies which parameter to focus on. this generates plots for
+pvalcpa=function(psdata,t=50,tby=1,m){# psdata is the real data, t and tby are used to generate number of data points using t/tby, m specifies which parameter to focus on. this generates plots for
 	# different values of the interested parameter from 0 to 1 (in lines) alongside real data (in dots)
 
 if (m==1){
