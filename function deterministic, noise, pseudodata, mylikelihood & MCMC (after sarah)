@@ -1,4 +1,4 @@
-deterministic=function(i1=0.2,i2=0.2,i3=0.2,i4=0.2,i5=0.2,c1=0.04,c2=0.8,c3=0.19,c4=0.9,c5=0.2,c6=0.88,c7=0.4,c8=0.9,t=50,tby=1){
+deterministic=function(i1=0.5,i2=0.5,i3=0.5,i4=0.5,i5=0.5,c1=0.5,c2=0.5,c3=0.5,c4=0.5,c5=0.5,c6=0.5,c7=0.5,c8=0.5,t=50,tby=1){
  # t is the maximum timepoint of the variable, tby is the numerical propagation time lap
 # kit to solve Sys of ODE's
 library(deSolve)
@@ -26,7 +26,7 @@ noise=function(dt,sf=0.1,erv1=0.1){ #this function introduce a normal error (mea
 	return(dt)	
 }
 
-pseudodata=function(i1=0.2,i2=0.2,i3=0.2,i4=0.2,i5=0.2,c1=0.04,c2=0.8,c3=0.19,c4=0.9,c5=0.2,c6=0.88,c7=0.4,c8=0.9,t=50,tby=1)
+pseudodata=function(i1=0.5,i2=0.5,i3=0.5,i4=0.5,i5=0.5,c1=0.5,c2=0.5,c3=0.5,c4=0.5,c5=0.5,c6=0.5,c7=0.5,c8=0.5,t=50,tby=1)
 {   	 a=deterministic(i1=i1,i2=i2,i3=i3,i4=i4,i5=i5,   c1=c1,c2=c2,c3=c3,c4=c4,c5=c5,c6=c6,c7=c7,c8=c8,t=t,tby=tby)
 	psdata=noise(a) 
 return (psdata)
