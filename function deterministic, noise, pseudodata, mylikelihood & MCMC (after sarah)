@@ -19,9 +19,9 @@ deterministic=dt[,6]/(dt[,6]+2*dt[,4])
 return (deterministic)
 }
 
-noise=function(dt,sf=0.01,erv1=0.1){ #this function introduce a normal error (mean 0, sd=sqrt(erv1))into some determinstic output dt, scaled by factor sf. (expecting sf between 0 and 1)
+noise=function(dt,sf=0.5,erv1=0.1){ #this function introduce a normal error (mean 0, sd=sqrt(erv1))into some determinstic output dt, scaled by factor sf. (expecting sf between 0 and 1)
 	for (i in 1:length(dt)){
-		dt[i]=dt[i]+sf*rnorm(1,mean=0,sd=sqrt(erv1))		
+		dt[i]=dt[i]+dt[i]*sf*rnorm(1,mean=0,sd=sqrt(erv1))		
 	}
 	return(dt)	
 }
