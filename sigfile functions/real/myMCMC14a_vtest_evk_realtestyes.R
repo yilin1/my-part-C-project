@@ -49,7 +49,7 @@ lnew=myloglk14realtest(a1=curpars,tby=tby,data=data,erv1=erv1)
  
 ## to compute M-H
 if (m==14){
-	  alpha=min(1,exp(lnew-lold)*mu3/c2)
+	  alpha=min(1,exp(lnew-lold)*mu/a2)
 } else {
   alpha=min(1,exp(lnew-lold))
   }
