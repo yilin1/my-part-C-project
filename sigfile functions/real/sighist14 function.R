@@ -13,5 +13,5 @@ sighist14_lines=function(mc,m,last=500){
     hist(include,main='single chain histogram',sub=paste('m=',m,',','last',last,'iterates of a chain of length',dim(mc)[1]),xlim=c(0,1),xlab='Parameter values',freq=FALSE)
     
  axis(side=3,at=c(round(hpdintv[1],2), round(hpdintv[2],2)),label=TRUE, col='red',lwd=2)
- lines(density(mc[,m]),col='blue')
+ lines(density(tail(mc[,m],last)),col='blue')
 }
