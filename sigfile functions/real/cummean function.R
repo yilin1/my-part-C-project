@@ -1,4 +1,4 @@
-source('/Users/yilinsmac/Desktop/sigfile functions/real/cummean function.r')
+#source('/Users/yilinsmac/Desktop/sigfile functions/real/cummean function.r')
 cummean=function(mc1,mc2=FALSE,mc3=FALSE,mc4=FALSE,m){
 	
 #this function plots the cumulated average of the lattice mc1-4, which should be the output of 14d MCMC function, with or without real
