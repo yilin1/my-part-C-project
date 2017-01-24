@@ -2,11 +2,11 @@ psdata=pseudodata_real(i1=0.2, i2=0.2, i3=0.3, i4=0.4, i5=0.4,c1=0.9, c2=0.8,c3=
 plot(psdata$Month,psdata$predictedratio)
 
 erv2[1]=0.2
-erv2[2]=0.2
-erv2[3]=0.2
+erv2[2]=0.21
+erv2[3]=0.21
 erv2[4]=0.2
-erv2[5]=0.2
-erv2[6]=0.15
+erv2[5]=0.21
+erv2[6]=0.2
 erv2[7]=0.15
 erv2[8]=0.12
 erv2[9]=0.15
@@ -29,21 +29,24 @@ realtest10=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=50,n=100000,erv1
 realtest11=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=50,n=100000,erv1=erv1,erv2=erv2,tby=1)
 realtest12=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=50,n=150000,erv1=erv1,erv2=erv2,tby=1)
 realtest13=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=50,n=150000,erv1=erv1,erv2=erv2,tby=1)
+realtest14=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=50,n=200000,erv1=erv1,erv2=erv2,tby=1)
+sink()
+sink("realtest14")
+print(erv2)
 
 
-
-
-par(mfrow=c(2,2))
-sighist14_lines(realtest11,m=14,last=1000)
+par(mfrow=c(3,5))
+histocp(realtest12,realtest13,last=3000,m=12)
+sighist14_lines(realtest13,m=7,last=1000)
 indivacf14_real(mc=realtest9)
 
-acf(realtest10[,12])
+acf(realtest13[,11])
 
-qtfitplot14_real(data=psdata,mc=realtest9,last=200,spsize=50,predict=TRUE)
+qtfitplot14_real(data=psdata,mc=realtest12,last=200,spsize=50,predict=TRUE)
 
 traceplot14(mc=realtest8,m=11,last=500)
 lines(realtest7[,11],col=2)
-indivtracplot14(mc=realtest8,last=300)
+indivtracplot14(mc=realtest12,last=300)
 
 for (i in 1:14){
 	quartz()
@@ -55,7 +58,7 @@ cummean(realtest9,m=i)
 }
 for (i in 1:14){
 	quartz()
-cummean(realtest10,realtest11,m=i)
+cummean(realtest12,realtest13,m=i)
 }
 for (i in 13:14){
 	quartz()

@@ -1,4 +1,4 @@
-#source("/Users/yilinsmac/Desktop/sigfile functions/14d/sighist14 function.r")
+source("/Users/yilinsmac/Desktop/sigfile functions/real/sighist14_lines function.r")
 
 sighist14_lines=function(mc,m,last=500){
 	#this is a histogram with HPD for a single chain, i.e.mth column of lattice mc)
