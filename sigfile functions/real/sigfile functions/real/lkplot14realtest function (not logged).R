@@ -1,0 +1,31 @@
+#source("/Users/yilinsmac/Desktop/sigfile functions/14d/lkplot14 function (not logged).r")
+
+## plot of likelihood (not logged)
+lkplot14realtest=function(m,data,parvec,tby=1,erv1=1){ 
+	# m is the index of the parameter of interest
+# data is the real data to compute the log-likelihood of the indexed parameter
+# parvec is a 1*14 vector specifying the true value of all parameters.
+#this function returns given other parameter specified by parvec, the likelihood plot of the parameter indexed m.
+t=max(data$Month)
+seq1=seq(0.01,0.99,by=0.001)
+nrow=length(seq1)
+a=matrix(0.5,ncol=14,nrow=nrow)
+#a[,14]=rep(0.01,nrow)
+for (j in 1:14){
+a[,j]=rep(parvec[j],nrow)
+}
+
+for (j in 1:length(seq1)){
+	a[j,m]=j*0.001
+}
+
+   likvec=lapply(seq(1,dim(a)[1],by=1),function(i) myloglk14realtest(a1=a[i,],data=data,tby=tby,erv1=erv1))
+
+
+# plot(seq(0.01,0.99,by=0.001),exp(as.numeric(likvec))/max(exp(as.numeric(likvec)))*max(h$density), xlab="par", ylab="likelihood",main=paste("m=",m))
+
+llp=plot(seq(0.01,0.99,by=0.001),exp(as.numeric(likvec)), xlab="par", ylab="likelihood",xlim=c(0,1),main=paste("m=",m))
+abline(v=parvec[m])
+
+return(llp)
+}
