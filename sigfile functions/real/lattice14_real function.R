@@ -1,6 +1,6 @@
 #source("/Users/yilinsmac/Desktop/sigfile functions/real/lattice14_real function.r")
 
-lattice14_real=function(mc,last=1000,spsize=100,data,tby=1){ 
+lattice14_real=function(mc,last=1000,spsize=100,data,tby=1,erv1=1){ 
 #mc is the output of a 14d MCMC function with real,
 #spsize is the number to sample from the last "last" elements of mc,  
  #data is the real data, it is required because we want the maximum time point of it. mc's time point should be the same as the data's max(Month)
