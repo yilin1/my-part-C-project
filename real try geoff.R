@@ -35,9 +35,11 @@ realtest15=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=50,n=200000,erv1
 #16,17 in WIN34
 #18,19 in WIN35
 #20,21 in WIN43
+realtest24=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=50,n=2600000,erv1=1,erv2=erv2,tby=1)
+realtest25=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=50,n=2600000,erv1=1,erv2=erv2,tby=1)
 
 sink()
-sink("realtest1415(20)")
+sink("realtest2425(260)sink")
 print(erv2)
 
 for (i in 1:14){
