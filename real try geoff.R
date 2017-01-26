@@ -38,25 +38,25 @@ sink("realtest1415(20)")
 print(erv2)
 
 for (i in 1:14){
-par(mfrow=c(2,1))
-histocp(realtest12,realtest13,last=100,m=i)
-histocp(realtest14,realtest15,last=100,m=i)
+  par(mfrow=c(2,1))
+  histocp(realtest12,realtest13,last=100,m=i)
+  histocp(realtest14,realtest15,last=100,m=i)
 }
 sighist14_lines(realtest14,m=10,last=10)
 
 indivacf14_real(mc=realtest14)
 for (i in 1:14){
-par(mfrow=c(1,2))
-acf(realtest14[,i])
-acf(realtest15[,i])
+  par(mfrow=c(1,2))
+  acf(realtest14[,i])
+  acf(realtest15[,i])
 }
 
 qtfitplot14_real(data=psdata,mc=realtest14,last=200,spsize=50,predict=TRUE)
 
 traceplot14(mc=realtest14,m=4,last=500)
 for (i in 1:14){
-traceplot14(mc=realtest14,m=i,last=500)
-lines(realtest15[,i],col=2)
+  traceplot14(mc=realtest14,m=i,last=500)
+  lines(realtest15[,i],col=2)
 }
 
 indivtracplot14(mc=realtest14,last=300)
@@ -86,6 +86,6 @@ lkplot14real(data=p2,m=2,parvec=a1)
 plot(realtest4[,14]) 
 
 for (i in 1:14){
-grplot14(realtest14,realtest15,m=i)
+  grplot14(realtest14,realtest15,m=i)
 }
 
