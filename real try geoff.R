@@ -38,8 +38,12 @@ realtest15=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=50,n=200000,erv1
 realtest24=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=50,n=2600000,erv1=1,erv2=erv2,tby=1)
 realtest25=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=50,n=2600000,erv1=1,erv2=erv2,tby=1)
 
+# from here on fuben:
+realtest26=myMCMC14a_vtest_evk_realtestyesfuben(data=psdata,v=1:14,k=50,n=2800000,erv1=1,erv2=erv2,tby=1)
+realtest27=myMCMC14a_vtest_evk_realtestyesfuben(data=psdata,v=1:14,k=50,n=2800000,erv1=1,erv2=erv2,tby=1)
+
 sink()
-sink("realtest2425(260)sink")
+sink("realtest2627(280)sink")
 print(erv2)
 
 for (i in 1:14){
