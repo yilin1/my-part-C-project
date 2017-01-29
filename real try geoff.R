@@ -45,8 +45,10 @@ realtest27=myMCMC14a_vtest_evk_realtestyesfuben(data=psdata,v=1:14,k=50,n=280000
 realtest28=myMCMC14a_vtest_evk_realtestyesfuben(data=psdata,v=1:14,k=1000,n=2800000,erv1=1,erv2=erv2,tby=1)
 realtest29=myMCMC14a_vtest_evk_realtestyesfuben(data=psdata,v=1:14,k=1000,n=2800000,erv1=1,erv2=erv2,tby=1)
 
+realtest30=myMCMC14a_vtest_evk_realtestyesfuben(data=psdata,v=1:14,k=1000,n=3000000,erv1=1,erv2=erv2,tby=1)
+realtest31=myMCMC14a_vtest_evk_realtestyesfuben(data=psdata,v=1:14,k=1000,n=3000000,erv1=1,erv2=erv2,tby=1)
 sink()
-sink("realtest2829(280)sink")
+sink("realtest3031(300)sink")
 print(erv2)
 
 for (i in 1:14){
