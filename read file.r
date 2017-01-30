@@ -18,6 +18,7 @@ source_data("https://github.com/yilin1/my-part-C-project/blob/0125/realtest1415(
 source_data("https://github.com/yilin1/my-part-C-project/blob/0125/workimage%200125.RData?raw=True")
 source_data("https://github.com/yilin1/my-part-C-project/blob/0126/realtest1617(30).RData?raw=True")
 source_data("https://github.com/yilin1/my-part-C-project/blob/0126/work%20images/image0126.RData?raw=True")
+source_data("https://github.com/yilin1/my-part-C-project/blob/0130/work%20images/image0129%2334.RData?raw=True")
 install.packages("ode")
 install.packages("deSolve")
 
