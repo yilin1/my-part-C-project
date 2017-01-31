@@ -60,7 +60,11 @@ realtest37=myMCMC14a_vtest_evk_realtestyesfuben(data=psdata,v=1:14,k=1000,n=2800
 sink()
 sink("realtest37(280)sink")
 print(erv2)
-
+# accident to quit realtest25. restart
+sink("realtest25(260,k=2000)sink")
+print(erv2)
+realtest25=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=2000,n=2600000,erv1=1,erv2=erv2,tby=1)
+sink()
 for (i in 1:14){
   par(mfrow=c(2,1))
   histocp(realtest16,realtest17,last=100,m=i) #TODAY'S 2
