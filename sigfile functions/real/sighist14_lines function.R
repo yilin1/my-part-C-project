@@ -14,4 +14,9 @@ sighist14_lines=function(mc,m,last=500){
     
  axis(side=3,at=c(round(hpdintv[1],2), round(hpdintv[2],2)),label=TRUE, col='red',lwd=2)
  lines(density(tail(mc[,m],last)),col='blue')
+ den=density(tail(mc[,m],last))
+ i=which.max(den$y)
+ #ymax=den$y[i]
+ xmax=den$x[i]
+ abline(v=xmax,col=3)
 }

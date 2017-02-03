@@ -17,7 +17,7 @@ yini<-c(w1=i1,w2=i2,w3=i3,w4=i4,w5=i5)
 dt<-ode(y=yini,func=pol,times=seq(0,t,by=tby),parms=c(c1,c2,c3,c4,c5,c6,c7,c8)) 
 deterministic=cbind(dt[,6]/(dt[,6]+2*dt[,4]),dt[,1])
 deterministic=as.data.frame(deterministic)
-colnames(deterministic)[1]='predictedratio'
+colnames(deterministic)[1]='ratio'
 colnames(deterministic)[2]='Month'
 
 
