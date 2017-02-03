@@ -53,9 +53,9 @@ for (i in 6:13){
 }
 
 # pick a random relapse (relapse fit) (it seems that 7 has the most data)
-rd=dragdata()
+rd=dragdata(home=FALSE)
 unique(rd[which(rd$outcome=="relapse"),]$Patient.No)
-p7=whichdata(7)
+p7=whichdata(7,home=FALSE)
 p7
 relap7fit=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,n=30000,k=20,erv2=erv2_24)
 qtfitplot14_real(data=p7,mc=relap7fit,last=200,spsize=50,predict=FALSE)
@@ -64,6 +64,26 @@ for (i in 6:13){
   sighist14_lines(relap7fit,m=i,last=500)
 }
 
+sink("relapse_p7 sink (560,k=2000)")
+print(paste("erv2=",erv2_24))
+a0=rep(0.5,14)
+a0[14]=0.14 #var(p7$ratio returns 0.1403)
+print(paste("a0=",a0))
+relap7mc1=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,a0=a0,v=1:14,n=5600000,k=2000,erv2=erv2_24)
+sink()
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Xia Mian Bu Shi Le
 for (i in 1:14){
   sighist14_lines(mc=mc51,m=i,last=200)
@@ -71,8 +91,8 @@ for (i in 1:14){
 
 for (i in 69:1){
   pi=whichdata(i)
-   plotdata(pi,i)
-#p=cbind(p,pi)
+  plotdata(pi,i)
+  #p=cbind(p,pi)
 }
 graphics.off()
 
