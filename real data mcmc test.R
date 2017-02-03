@@ -76,12 +76,39 @@ relap7mc2=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,a0=a0,v=1:14,n=5600000,k=
 sink()
 
 
+#remission find
+#p2=whichdata(2,home=FALSE)
+v=unique(rd[which(rd$outcome=="remission"),]$Patient.No)
+c=c()
+for (i in v){
+  j=whichdata(i,home=FALSE)
+  c=rbind(c,dim(j)[1])
+}
+sizes=as.data.frame(cbind(c,v))
+names(sizes)=c("num.pts","Patient.No.")
+sizes[which(sizes$num.pts==max(sizes$num.pts))[1],]$Patient.No.
+#8 and 64th patient
 
+#the above finds the remission patient 
+#with the most datapoints
 
+par(mfrow=c(1,1))
+p8=whichdata(8,home=FALSE)
+dim(p8)
+plotdata(p8)
+p64=whichdata(64,home=FALSE)
+dim(p64)
+plotdata(p64)
+#p8 has more variances
 
-
-
-
+sink("remission_p8a sink (560,k=2000)")
+erv2_p8a=c(0.20, 0.25, 0.24, 0.20, 0.21, 0.20, 0.15, 0.12, 0.12, 0.12, 0.18, 0.10, 0.04,0.03)
+print(paste("erv2=",erv2_p8a))
+a0=rep(0.5,14)
+a0[14]=0.14 #var(p7$ratio returns 0.1403)
+print(paste("a0=",a0))
+relap7mc2=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,a0=a0,v=1:14,n=5600000,k=2000,erv2=erv2_p7b)
+sink()
 
 
 
