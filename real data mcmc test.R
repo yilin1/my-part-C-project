@@ -64,12 +64,15 @@ for (i in 6:13){
   sighist14_lines(relap7fit,m=i,last=500)
 }
 
-sink("relapse_p7 sink (560,k=2000)")
-print(paste("erv2=",erv2_24))
+install.packages("deSolve")
+library(deSolve)
+
+sink("relapse_p7b sink (560,k=2000)")
+print(paste("erv2=",erv2_p7b))
 a0=rep(0.5,14)
 a0[14]=0.14 #var(p7$ratio returns 0.1403)
 print(paste("a0=",a0))
-relap7mc1=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,a0=a0,v=1:14,n=5600000,k=2000,erv2=erv2_24)
+relap7mc2=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,a0=a0,v=1:14,n=5600000,k=2000,erv2=erv2_p7b)
 sink()
 
 
