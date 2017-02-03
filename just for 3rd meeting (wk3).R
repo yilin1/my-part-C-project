@@ -99,6 +99,8 @@ for (i in 1:14){
 
 ## MEI LE
 min(ess(realtest28))
+
+## Suggested by Geoff
 library(lattice)
 splom(realtest28)
 rt=realtest28[,1:14]
