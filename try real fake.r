@@ -66,36 +66,77 @@ print(erv2)
 realtest25=myMCMC14a_vtest_evk_realtestyes(data=psdata,v=1:14,k=2000,n=2600000,erv1=1,erv2=erv2,tby=1)
 sink()
 
+var(realtest28[,i])
+library(mcmcse)
+minESS(p=14)
+multiESS(realtest34)
+
+## 0 var(/theta_i bar)
 for (i in 1:14){
-  par(mfrow=c(2,1))
-  histocp(realtest24,realtest25,last=100,m=i) #TODAY'S 2
-  #histocp(realtest14,realtest15,last=100,m=i) # PREVIOUS' 2
+print(paste("i=",i,"var=",var(realtest28[,i])/ess(realtest28)[i]))}
+##
+
+## 1. GEI TA KAN: (histcp ??)
+for (i in 1:14){
+  #par(mfrow=c(2,1))
+  histocp(realtest28,realtest34,subchain(realtest26,m=i,k=20),last=100,m=i) 
+  #histocp(realtest13,realtest14,realtest15,last=100,m=i) 
 }
+graphics.off()
+## 
 sighist14_lines(realtest14,m=10,last=10)
 
-indivacf14_real(mc=realtest14)
+
+## 2. GEI TA KAN: (acf hao)
 for (i in 1:14){
   #par(mfrow=c(1,2))
-  acf(realtest14[,i])
+  acf(realtest28[,i])
+  acf(realtest34[,i])
   #acf(realtest17[,i])
 }
+##
 
-qtfitplot14_real(data=psdata,mc=realtest24,last=200,spsize=50,predict=TRUE)
+indivacf14_real(mc=realtest28)
 
+qtfitplot14_real(data=psdata,mc=realtest28,last=200,spsize=50,predict=FALSE)
+
+## 3. GEI TA KAN: (traces: Wo bu hui kan:)
 for (i in 1:14){
-  traceplot14(mc=realtest14,m=i,last=500)
-  #lines(realtest15[,i],col=2)
+  traceplot14(mc=realtest28,m=12,last=500)
+  lines(realtest34[,12],col=2)
+  lines(subchain(realtest26,m=i,k=20),col=3)
 }
+##
 traceplot14(mc=realtest14,m=4,last=500)
 
 
 indivtracplot14(mc=realtest24,last=300)
 graphics.off()
 
+## 4. GEI TA KAN (cummean hao)
 for (i in 1:14){
-  quartz()
-  cummean(realtest10,realtest9,realtest8,realtest6,m=i)
+  #quartz()
+  #cummean(subchain(realtest26,m=i,k=20),realtest28,realtest34,subchain(realtest24,m=i,k=20),m=i)
+  cummean(realtest28,realtest34,m=i)
+  cummean(realtest14,realtest15,m=i)
+  }
+##
+
+## 5. GEI TA KAN (grp hao? m=1)
+for (i in 1:14){
+  grplot14(realtest28,realtest34,m=i)
+  grplot14(realtest16,realtest17,m=i)
 }
+## 
+
+
+## MEI LE
+typeof(subc2412)
+library(mcmcse)
+minESS(p=14)
+multiESS(realtest34)
+ess(subc2412) # conservative choose the smallest one...
+multiESS(subc2412)
 for (i in 1:14){
   #quartz()
   cummean(realtest24,m=i)
@@ -115,21 +156,14 @@ tail(mrealp2)
 lkplot14real(data=p2,m=2,parvec=a1)
 plot(realtest4[,14]) 
 
-for (i in 1:14){
-  grplot14(realtest16,realtest17,m=i)
-}
-
+subl24=sublattice(realtest24)
 subc2412=subchain(mc=realtest14,k=10,m=12)
 subc2411=subchain(mc=realtest24,k=5,m=11)
 subc1409=subchain(mc=realtest14,k=1,m=9)
 subc2407=subchain(mc=realtest24,k=20,m=7)
 
 subl24=sublattice(realtest24)
-for (i in 1:14){
-  #par(mfrow=c(1,2))
-  acf(subc1409)
-  #acf(realtest17[,i])
-}
+
 
 for (i in 1:14){
   #traceplot14(mc=realtest14,m=i,last=500)
@@ -137,11 +171,6 @@ for (i in 1:14){
   plot(subc1409,type='l')
   plot(subc2412,type="l")
 }
-typeof(subc2412)
-library(mcmcse)
-minESS(p=14)
-multiESS(realtest24)
-ess(subc2412) # conservative choose the smallest one...
-multiESS(subc2412)
+
 
 

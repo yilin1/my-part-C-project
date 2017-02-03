@@ -20,6 +20,13 @@ source_data("https://github.com/yilin1/my-part-C-project/blob/0126/realtest1617(
 source_data("https://github.com/yilin1/my-part-C-project/blob/0126/work%20images/image0126.RData?raw=True")
 source_data("https://github.com/yilin1/my-part-C-project/blob/0130/work%20images/image0129%2334.RData?raw=True")
 source_data("https://github.com/yilin1/my-part-C-project/blob/0131/realtest's/realtest24(260).RData?raw=True")
+source_data("https://github.com/yilin1/my-part-C-project/blob/0203/realtest's/realtest26(280%2Ck%3D50).RData?raw=TRUE")
+source_data("https://github.com/yilin1/my-part-C-project/blob/0203/realtest's/realtest28(280%2Ck%3D1000).RData?raw=TRUE")
+source_data("https://github.com/yilin1/my-part-C-project/blob/0203/realtest's/realtest34(280%2Ck%3D1000).RData?raw=TRUE")
+save(realtest26,erv2_26,file="realtest26(280,k=50).RData")
+save(realtest28,erv2_28,file="realtest28(280,k=1000).RData")
+save(realtest34,erv2_34,file="realtest34(280,k=1000).RData")
+
 install.packages("ode")
 install.packages("deSolve")
 
