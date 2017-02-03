@@ -1,5 +1,7 @@
-dragdata=function(){
+dragdata=function(home=TRUE){
+  if (home==TRUE){
 setwd('/Users/yilinsmac/Desktop/dissert')
+  } 
 #install.packages("gdata")
 require(gdata)
 rd=read.xls("(Real Data) bcr-abl1-transcript-ratios_state2006.xls",header=TRUE,sheet=1,verbose=FALSE)
@@ -39,6 +41,9 @@ rd[which(rd$Patient.No.==66),]$outcome="cannotclassify"
 #outcome[66]="cannot classify"
 
 rd$outcome=as.factor(rd$outcome)
-setwd('/Users/yilinsmac/Desktop')
+if (home==True){
+setwd('/Users/yilinsmac/Desktop')}
+
+
 return(rd)
 }
