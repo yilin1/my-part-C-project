@@ -41,7 +41,7 @@ rd[which(rd$Patient.No.==66),]$outcome="cannotclassify"
 #outcome[66]="cannot classify"
 
 rd$outcome=as.factor(rd$outcome)
-if (home==True){
+if (home==TRUE){
 setwd('/Users/yilinsmac/Desktop')}
 
 
