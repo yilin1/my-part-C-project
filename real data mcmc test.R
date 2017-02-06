@@ -53,7 +53,7 @@ qtfitplot14_real(data=mm,mc=remissionfit,last=200,spsize=50,predict=FALSE)
 plot(density(remissionfit[,9])) 
 
 
-sink(file="remissionfit1(200,k=1000")
+sink(file="relapsefit1(200,k=1000)")
 print(paste("erv2="))
 print(erv2_24)
 remissionfit1=myMCMC14a_vtest_evk_realtestyesfuben(data=mm,v=1:14,a0=a0,n=2000000,k=1000,erv2=erv2_24)
@@ -75,9 +75,9 @@ for (i in 6:13){
 }
 
 # pick a random relapse (relapse fit) (it seems that 7 has the most data)
-rd=dragdata()
+rd=dragdata(home=FALSE)
 unique(rd[which(rd$outcome=="relapse"),]$Patient.No)
-p7=whichdata(7)
+p7=whichdata(7,home=FALSE)
 p7
 relap7fit=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,n=30000,k=20,erv2=erv2_24)
 qtfitplot14_real(data=p7,mc=relap7fit,last=200,spsize=50,predict=FALSE)
@@ -85,6 +85,21 @@ plot(density(relap7fit[,9]))
 for (i in 6:13){
   sighist14_lines(relap7fit,m=i,last=500)
 }
+
+sink(file="relap7fit1(200,k=1000)")
+print(paste("erv2="))
+print(erv2_24)
+a0=rep(0.5,14)
+a0[14]=var(p7$ratio)
+print(paste("a0="))
+print(a0)
+relap7fit1=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,a0=a0,v=1:14,n=2000000,k=1000,erv2=erv2_24)
+sink()
+
+
+
+
+
 
 ## Xia Mian Bu Shi Le
 for (i in 1:14){
