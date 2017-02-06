@@ -34,4 +34,4 @@ for (month in morethan20){
 mm=as.data.frame(cbind(morethan20,meanratio))
 names(mm)=c("Month","ratio") #names are to be consistent with 14d MCMC functions to be used.
 plot(mm)
-var(mm$mean)
+var(mm$ratio)

@@ -44,8 +44,10 @@ mc53=myMCMC14lognorm(data=p5,v=1:14,a0=rep(0.5,14),k=50,erv1=1,erv2=erv2_24,tby=
 qtfitplot14_real(data=p6,mc=mc61,last=200,spsize=50,predict=FALSE)
 
 #use the average of 69: (remission fit)
-mcmm=myMCMC14lognorm(data=mm,v=1:14,a0=rep(0.5,14),k=50,erv1=1,erv2=erv2_24,tby=1,n=10000)
-remissionfit=myMCMC14a_vtest_evk_realtestyesfuben(data=mm,v=1:14,n=20000,k=20,erv2=erv2_24)
+a0=rep(0.5,14)
+a0[14]=var(mm$ratio)
+mcmm=myMCMC14lognorm(data=mm,v=1:14,a0=a0,k=50,erv1=1,erv2=erv2_24,tby=1,n=10000)
+remissionfit=myMCMC14a_vtest_evk_realtestyesfuben(data=mm,v=1:14,a0=a0,n=120000,k=20,erv2=erv2_24)
 qtfitplot14_real(data=mm,mc=remissionfit,last=200,spsize=50,predict=FALSE)
 plot(density(remissionfit[,9])) 
 for (i in 6:13){
@@ -53,9 +55,9 @@ for (i in 6:13){
 }
 
 # pick a random relapse (relapse fit) (it seems that 7 has the most data)
-rd=dragdata(home=FALSE)
+rd=dragdata()
 unique(rd[which(rd$outcome=="relapse"),]$Patient.No)
-p7=whichdata(7,home=FALSE)
+p7=whichdata(7)
 p7
 relap7fit=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,n=30000,k=20,erv2=erv2_24)
 qtfitplot14_real(data=p7,mc=relap7fit,last=200,spsize=50,predict=FALSE)
@@ -64,71 +66,6 @@ for (i in 6:13){
   sighist14_lines(relap7fit,m=i,last=500)
 }
 
-install.packages("deSolve")
-library(deSolve)
-rd=dragdata(home=FALSE)
-
-sink("relapse_p7b sink (560,k=2000)")
-print(paste("erv2=",erv2_p7b))
-a0=rep(0.5,14)
-a0[14]=0.14 #var(p7$ratio returns 0.1403)
-print(paste("a0=",a0))
-relap7mc2=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,a0=a0,v=1:14,n=5600000,k=2000,erv2=erv2_p7b)
-sink()
-
-
-#remission find
-#p2=whichdata(2,home=FALSE)
-v=unique(rd[which(rd$outcome=="remission"),]$Patient.No)
-c=c()
-for (i in v){
-  j=whichdata(i,home=FALSE)
-  c=rbind(c,dim(j)[1])
-}
-sizes=as.data.frame(cbind(c,v))
-names(sizes)=c("num.pts","Patient.No.")
-sizes[which(sizes$num.pts==max(sizes$num.pts))[1],]$Patient.No.
-#8 and 64th patient
-
-#the above finds the remission patient 
-#with the most datapoints
-
-par(mfrow=c(1,1))
-p8=whichdata(8,home=FALSE)
-dim(p8)
-plotdata(p8)
-p64=whichdata(64,home=FALSE)
-dim(p64)
-plotdata(p64)
-var(p8$ratio)
-var(p64$ratio)
-#p8 has more variances, choose p8
-
-sink("remission_p8b sink (560,k=2000)")
-erv2_p8a=c(0.20, 0.25, 0.24, 0.20, 0.21, 0.20, 0.15, 0.12, 0.12, 0.12, 0.18, 0.10, 0.04,0.03)
-print(paste("erv2="))
-print(erv2_p8a)
-a0=rep(0.5,14)
-a0[14]=0.019 #var(p7$ratio returns 0.019)
-print(paste("a0="))
-print(a0)
-remis8mc2=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,a0=a0,v=1:14,n=5600000,k=2000,erv2=erv2_p8a)
-sink()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Xia Mian Bu Shi Le
 for (i in 1:14){
   sighist14_lines(mc=mc51,m=i,last=200)
@@ -136,8 +73,8 @@ for (i in 1:14){
 
 for (i in 69:1){
   pi=whichdata(i)
-  plotdata(pi,i)
-  #p=cbind(p,pi)
+   plotdata(pi,i)
+#p=cbind(p,pi)
 }
 graphics.off()
 
