@@ -52,6 +52,25 @@ remissionfit=myMCMC14a_vtest_evk_realtestyesfuben(data=mm,v=1:14,a0=a0,n=2000000
 qtfitplot14_real(data=mm,mc=remissionfit,last=200,spsize=50,predict=FALSE)
 plot(density(remissionfit[,9])) 
 
+#remis p7
+rd=dragdata(home=FALSE)
+p8=whichdata(8,home=FALSE)
+dim(p8)
+
+sink(file="remis8mc1(560,k=2000)")
+print(paste("erv2="))
+print(erv2_24)
+a0=rep(0.5,14)
+a0[14]=var(p8$ratio)
+print(paste("a0="))
+print(a0)
+remis8mc1=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,v=1:14,a0=a0,n=5600000,k=2000,erv2=erv2_24)
+sink()
+
+
+
+
+
 
 sink(file="relapsefit1(200,k=1000)")
 print(paste("erv2="))
