@@ -43,13 +43,33 @@ mc52=myMCMC14lognorm(data=p5,v=1:14,a0=rep(0.5,14),k=20,erv1=1,erv2=erv2_24,tby=
 mc53=myMCMC14lognorm(data=p5,v=1:14,a0=rep(0.5,14),k=50,erv1=1,erv2=erv2_24,tby=1,n=50000)
 qtfitplot14_real(data=p6,mc=mc61,last=200,spsize=50,predict=FALSE)
 
+
 #use the average of 69: (remission fit)
 a0=rep(0.5,14)
 a0[14]=var(mm$ratio)
 mcmm=myMCMC14lognorm(data=mm,v=1:14,a0=a0,k=50,erv1=1,erv2=erv2_24,tby=1,n=10000)
-remissionfit=myMCMC14a_vtest_evk_realtestyesfuben(data=mm,v=1:14,a0=a0,n=120000,k=20,erv2=erv2_24)
+remissionfit=myMCMC14a_vtest_evk_realtestyesfuben(data=mm,v=1:14,a0=a0,n=2000000,k=20,erv2=erv2_24)
 qtfitplot14_real(data=mm,mc=remissionfit,last=200,spsize=50,predict=FALSE)
 plot(density(remissionfit[,9])) 
+
+
+sink(file="remissionfit1(200,k=1000")
+print(paste("erv2="))
+print(erv2_24)
+remissionfit1=myMCMC14a_vtest_evk_realtestyesfuben(data=mm,v=1:14,a0=a0,n=2000000,k=1000,erv2=erv2_24)
+sink()
+
+
+
+
+
+
+
+
+
+
+
+
 for (i in 6:13){
   sighist14_lines(remissionfit,m=i,last=500)
 }
@@ -73,8 +93,8 @@ for (i in 1:14){
 
 for (i in 69:1){
   pi=whichdata(i)
-   plotdata(pi,i)
-#p=cbind(p,pi)
+  plotdata(pi,i)
+  #p=cbind(p,pi)
 }
 graphics.off()
 
