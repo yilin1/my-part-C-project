@@ -1,4 +1,11 @@
+install.packages("repmis")
 library(repmis)#
+install.packages("curl")
+library(curl)
+install.packages("data.table")
+library(data.table)
+install.packages("digest")
+library(digest)
 source_data("https://github.com/yilin1/my-part-C-project/blob/0208/realtest's/remissionfit1(200%2Ck%3D1000)fuben.RData?raw=TRUE")
 source_data("https://github.com/yilin1/my-part-C-project/blob/0209/work%20images/coreimage0209.RData?raw=TRUE")
 erv2_remissionfit2=erv2_24
@@ -33,6 +40,18 @@ print(erv2_remissionfit2)
 print(paste("a0="))
 print(a0)
 remis8mc1=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,v=1:14,a0=a0,n=5600000,k=2000,erv2=erv2_remissionfit2)
+sink()
+
+#43 0209 remis8mc2
+p8=whichdata(8,home=FALSE)
+a0=rep(0.5,14)
+a0[14]=var(p8$ratio)
+sink(file="remis8mc2sink(560,2000)fuben.RData")
+print(paste("erv2="))
+print(erv2_remissionfit2)
+print(paste("a0="))
+print(a0)
+remis8mc2=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,v=1:14,a0=a0,n=5600000,k=2000,erv2=erv2_remissionfit2)
 sink()
 
 rd=dragdata(home=FALSE)
