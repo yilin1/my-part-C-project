@@ -85,7 +85,7 @@ print(a0)
 relap7mc2=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,a0=a0,n=5600000,k=2000,erv2=erv2_relap7mc1)
 sink()
 
-#37 0209 indep for remissionfit1
+#37 0209 indep for remissionfit1 b3
 source_data("https://github.com/yilin1/my-part-C-project/blob/0209/realtest's/remissionfit1(200%2Ck%3D1000)fuben.RData?raw=TRUE")
 p8=whichdata(8,home=FALSE)
 plotdata(p8,8)
@@ -95,7 +95,7 @@ sink(file="b3_for remissionfit1(200wan,1000)(b3 is n=60000, k=3,evk=100)")
 b3=indepMCMC(data=p8,mc=remissionfit1,k=3,a0=a0,evk=100,n=60000,d=14)
 sink()
 
-
+#48 0209 indep for remissionfit1  b4
 source_data("https://github.com/yilin1/my-part-C-project/blob/0209/realtest's/remissionfit1(200%2Ck%3D1000)fuben.RData?raw=TRUE")
 p8=whichdata(8,home=FALSE)
 plotdata(p8,8)
