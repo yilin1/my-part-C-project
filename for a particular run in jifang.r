@@ -68,3 +68,19 @@ print(paste("a0="))
 print(a0)
 relap7mc1=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,a0=a0,n=5600000,k=2000,erv2=erv2_relap7mc1)
 sink()
+
+#44 0209 relap7mc1
+p7=whichdata(7,home=FALSE)
+dim(p7)
+plotdata(p7,patientnum=7)
+a0=rep(0.5,14)
+a0[14]=var(p7$ratio)
+erv2_relap7mc1=erv2_24
+erv2_relap7mc1[14]=0.01
+sink(file="relap7mc2sink(560,k=2000)fuben")
+print(paste("erv2="))
+print(erv2_relap7mc1)
+print(paste("a0="))
+print(a0)
+relap7mc2=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,a0=a0,n=5600000,k=2000,erv2=erv2_relap7mc1)
+sink()
