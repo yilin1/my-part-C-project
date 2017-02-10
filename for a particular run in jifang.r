@@ -111,3 +111,17 @@ a0[14]=var(p8$ratio)
 sink(file="b4_for remissionfit1(200wan,1000)(b4 is n=60000, k=3,evk=100)")
 b4=indepMCMC(data=p8,mc=remissionfit1,k=3,a0=a0,evk=100,n=60000,d=14)
 sink()
+a0_b4=a0
+save(b4,remissionfit1,p8,a0_b4,file="b4_indepMCMC for remissionfit1(60000,100).RData")
+
+#48 0210 remis8mc560w1
+p8=whichdata(8,home=FALSE)
+a0=rep(0.5,14)
+a0[14]=var(p8$ratio)
+sink(file="remis8mc560w1sink(560w,2000)fuben.RData")
+print(paste("erv2="))
+print(erv2_remissionfit2)
+print(paste("a0="))
+print(a0)
+remis8mc560w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,v=1:14,a0=a0,n=5600000,k=2000,erv2=erv2_remissionfit2)
+sink()
