@@ -137,3 +137,16 @@ b6=indepMCMC(data=p8,mc=remissionfit1,k=3,a0=a0,evk=100,n=200000,d=14)
 sink()
 a0_b6=a0
 save(b6,remissionfit1,p8,a0_b6,file="b4_indepMCMC for remissionfit1(200000,100).RData")
+
+#01 0210 remis8fit260w1
+p8=whichdata(8,home=FALSE)
+plotdata(p8,8)
+a0=rep(0.5,14)
+a0[14]=var(p8$ratio)
+sink(file="remis8fit260w1sink(260w,1000)fuben.RData")
+print(paste("erv2="))
+print(erv2_remissionfit2)
+print(paste("a0="))
+print(a0)
+remis8fit260w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,v=1:14,a0=a0,n=2600000,k=1000,erv2=erv2_remissionfit2)
+sink()
