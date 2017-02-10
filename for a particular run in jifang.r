@@ -95,6 +95,13 @@ sink(file="b3_for remissionfit1(200wan,1000)(b3 is n=60000, k=3,evk=100)")
 b3=indepMCMC(data=p8,mc=remissionfit1,k=3,a0=a0,evk=100,n=60000,d=14)
 sink()
 
+#37 0210 indep for remissionfit1 b5
+sink(file="b5_for remissionfit1(200wan,1000)(b3 is n=200000, k=3,evk=100)")
+b5=indepMCMC(data=p8,mc=remissionfit1,k=3,a0=a0,evk=100,n=200000,d=14)
+sink()
+
+
+
 #48 0209 indep for remissionfit1  b4
 source_data("https://github.com/yilin1/my-part-C-project/blob/0209/realtest's/remissionfit1(200%2Ck%3D1000)fuben.RData?raw=TRUE")
 p8=whichdata(8,home=FALSE)
