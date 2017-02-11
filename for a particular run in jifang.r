@@ -150,3 +150,17 @@ print(paste("a0="))
 print(a0)
 remis8fit260w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,v=1:14,a0=a0,n=2600000,k=1000,erv2=erv2_remissionfit2)
 sink()
+
+#37 0211 remis8fit270w1
+p8=whichdata(8,home=FALSE)
+plotdata(p8,8)
+a0=rep(0.5,14)
+a0[14]=var(p8$ratio)
+sink(file="remis8fit270w1sink(270w,1000)fuben.RData")
+print(paste("erv2="))
+print(erv2_remissionfit2)
+print(paste("a0="))
+print(a0)
+remis8fit270w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,v=1:14,a0=a0,n=2700000,k=1000,erv2=erv2_remissionfit2)
+sink()
+
