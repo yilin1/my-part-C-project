@@ -126,7 +126,7 @@ print(a0)
 remis8mc560w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,v=1:14,a0=a0,n=5600000,k=2000,erv2=erv2_remissionfit2)
 sink()
 
-#09 0210 indep for remissionfit1  b4
+#09 0210 indep for remissionfit1  b6 (Meile)
 source_data("https://github.com/yilin1/my-part-C-project/blob/0209/realtest's/remissionfit1(200%2Ck%3D1000)fuben.RData?raw=TRUE")
 p8=whichdata(8,home=FALSE)
 plotdata(p8,8)
@@ -164,3 +164,18 @@ print(a0)
 remis8fit270w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,v=1:14,a0=a0,n=2700000,k=1000,erv2=erv2_remissionfit2)
 sink()
 
+#38 0211 relap7fit270w1
+p7=whichdata(7,home=FALSE)
+dim(p7)
+plotdata(p7,patientnum=7)
+a0=rep(0.5,14)
+a0[14]=var(p7$ratio)
+erv2_relap7fit270w1=erv2_24
+erv2_relap7fit270w1[14]=0.01
+sink(file="relap7fit270w1sink(270,k=1000)fuben")
+print(paste("erv2="))
+print(erv2_relap7fit270w1)
+print(paste("a0="))
+print(a0)
+relap7fit270w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,a0=a0,n=5600000,k=2000,erv2=erv2_relap7mc1)
+sink()
