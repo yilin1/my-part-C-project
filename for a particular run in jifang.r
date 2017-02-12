@@ -179,3 +179,15 @@ print(paste("a0="))
 print(a0)
 relap7fit270w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,a0=a0,n=5600000,k=2000,erv2=erv2_relap7mc1)
 sink()
+
+#39 #0212 indep samp on relap7fit2
+p7=whichdata(7,home=FALSE)
+plotdata(p7,7)
+a0=rep(0.5,14)
+a0[14]=var(p7$ratio)
+qtfitplot14_real(data=p7,mc=relap7fit2)
+sink(file="irelap1_relap7fit2(260w,1000)(irelap1 is n=400000, k=3,evk=100)")
+irelap1=indepMCMC(data=p7,mc=relap7fit2,k=3,a0=a0,evk=100,n=400000,d=14)
+sink()
+a0_irelap1=a0
+save(irelap1,relap7fit2,p7,a0irelap1,file="irelap1_for relap7fit2(260w,1000)(irelap1 is n=400000, k=3,evk=100).RData")
