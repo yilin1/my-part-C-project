@@ -164,21 +164,6 @@ print(a0)
 remis8fit270w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,v=1:14,a0=a0,n=2700000,k=1000,erv2=erv2_remissionfit2)
 sink()
 
-#38 0212 relap7fit280w1
-p7=whichdata(7,home=FALSE)
-dim(p7)
-plotdata(p7,patientnum=7)
-a0=rep(0.5,14)
-a0[14]=var(p7$ratio)
-erv2_relap7fit280w1=erv2_24
-erv2_relap7fit280w1[14]=0.01
-sink(file="relap7fit280w1sink(270,k=1000)fuben")
-print(paste("erv2="))
-print(erv2_relap7fit280w1)
-print(paste("a0="))
-print(a0)
-relap7fit280w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,a0=a0,n=2800000,k=1000,erv2=erv2_relap7fit280w1)
-sink()
 
 #39 #0212 indep samp1 on relap7fit2
 p7=whichdata(7,home=FALSE)
@@ -219,3 +204,19 @@ remis8fit280w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p8,v=1:14,a0=a0,n=28000
 sink()
 a0_remis8fit280w1=a0
 save(remis8fit280w1,a0_remis8fit280w1,p8,file="remis8fit280w1.RData")
+
+#48 0216 relap7fit280w1
+p7=whichdata(7,home=FALSE)
+dim(p7)
+plotdata(p7,patientnum=7)
+a0=rep(0.5,14)
+a0[14]=var(p7$ratio)
+erv2_relap7fit280w1=erv2_24
+erv2_relap7fit280w1[14]=0.01
+sink(file="relap7fit280w1sink(270,k=1000)fuben")
+print(paste("erv2="))
+print(erv2_relap7fit280w1)
+print(paste("a0="))
+print(a0)
+relap7fit280w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,a0=a0,n=2800000,k=1000,erv2=erv2_relap7fit280w1)
+sink()
