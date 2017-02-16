@@ -1,19 +1,21 @@
 #source("/Users/yilinsmac/Desktop/sigfile functions/real/qtles14_real function.r")
 
-qtles14_real=function(lat,tby=1){ 
-	# lat is the output from the lattice14_real() function, 
-	#this function returns the quantile values of the lattice "lat" at each time point of lat
-	t=dim(lat)[2]
-	q25={}
-	q75={}
-	q50={}
-	for (i in 1:(t/tby)){
-	 d=quantile(lat[,i])
-	 q25[i]=d[2]
-	 q50[i]=d[3]
-	 q75[i]=d[4]
-	 }
-	 qts=cbind(q25,q50,q75)
-	 return(qts)
+qtles14_real=function(lat,data){ 
+  # lat is the output from the lattice14_real() function, 
+  #this function returns the quantile values of the lattice "lat" at each time point of lat
+  t=dim(lat)[2]
+  q25={}
+  q75={}
+  q50={}
+  for (i in 1:t){
+    d=quantile(lat[,i])
+    q25[i]=d[2]
+    q50[i]=d[3]
+    q75[i]=d[4]
+  }
+  qts=as.data.frame(cbind(q25,q50,q75))
+  
+  qts$Month=data$Month
+  return(qts)
 }
 

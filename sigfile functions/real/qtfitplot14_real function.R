@@ -15,11 +15,11 @@ plot(data$Month,data$ratio,ylim=c(0,1),main=paste('quantile predictions','(',dim
 	plot(data$Month,data$ratio,ylim=c(0,1),main=paste('quantile predictions','(',dim(mc)[1],'iterations',')'),ylab='Transcript BCR-ABL levels',xlab='Months')
 	}
 
-lat=lattice14_real(mc=mc,last=last,spsize=spsize,data=data,tby=tby)
-qts=qtles14_real(lat=lat,tby=tby)
-lines(qts[,1],col='red') # 25% quantile
-lines(qts[,2],col='blue') # 50% quantile
-lines(qts[,3],col='green') # 75% quantile
+lat=lattice14_real(mc=mc,last=last,spsize=spsize,data=data)
+qts=qtles14_real(lat=lat,data=data)
+lines(qts$Month,qts$q25,col='red') # 25% quantile
+lines(qts$Month,qts$q50,col='blue') # 50% quantile
+lines(qts$Month,qts$q75,col='green') # 75% quantile
 legend(x=35,y=0.98,bg="transparent",legend=c('25% quantile','50% quantile',"75% quantile"),col=c('red','blue','green'),lty=c('solid','solid','solid'),box.lty='dashed')
 
 return(dim(mc)[1])
