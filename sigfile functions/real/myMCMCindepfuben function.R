@@ -1,4 +1,4 @@
-indepMCMCsplit=function(data,mc,k,split1=c(1:5),split2=c(6:13),split3=14,a0=rep(0.5,14),evk=10,n=3000){ 
+myMCMCindepfuben=function(data,mc,k,n=1000,split1=c(1:5),split2=c(6:13),split3=14,a0=rep(0.5,14),erv2=rep(0.1,14),evk=10,v=1:14){ 
   # this is the function to produce second run based on a first run output from a 14d MCMC output, i.e., the mc.
   
   #data is the pseudodata_real() output to deal with; noise variance is the noise variance, 
@@ -17,15 +17,15 @@ indepMCMCsplit=function(data,mc,k,split1=c(1:5),split2=c(6:13),split3=14,a0=rep(
   lold=myloglk14realtest(a1=a0,data=data)
   count=rep(0,14)
   curpars=a0
-
+  
   d1=length(split1)
   d2=length(split2)
   d3=length(split3)
   pkhat1=makeproposal(mc=mc[,split1],k=k[1],d=d1)
   pkhat2=makeproposal(mc=mc[,split2],k=k[2],d=d2)
   pkhat3=makeproposal(mc=mc[,split3],k=k[3],d=d3)
-
-   #current 14-d parameter guess at iteration 0
+  
+  #current 14-d parameter guess at iteration 0
   # for loop to loop over n iterations
   for (MCitr in 1:(n-1)){
     # split1
@@ -151,11 +151,62 @@ indepMCMCsplit=function(data,mc,k,split1=c(1:5),split2=c(6:13),split3=14,a0=rep(
     } #end else
     lnew=NA	   
     
+  
+    
+
+  #myMCMC14a_vtest_evk_realtestyesfuben=function(data,v,a0=rep(0.5,14),k=10,erv2=rep(0.01,14),n=3000){ 
+  # data is the pseudodata_real() output to deal with; noise variance is the noise variance, erv2 is the variance of proposal distribution; n is the number of times of MCMC.
+  
+  # this loops over each parameter in one iteration.
+  
+  # erv2 is a vector of normal proposal variance of dim 1*14
+  # v is the index(es) for the testing parameter(s),would just loop over the parameters specified by v, and the others would have initial guess set to true parameter values.
+  
+  # k is such that we only record every kth iteration.
+  #a0 is the vector of initial guesses.
+  
+    # for loop to loop over 14 parameters
+ for (m in v){
+      mu=curpars[m]	#get out current guess for the mth parameter we are interested in
+      
+      a2=rnorm(1,mu,erv2[m]) 
+      if (a2<0 || a2>1){
+        curpars[m]=mu
+        # a[(MCitr+1),]=a[MCitr,]
+        # print(paste("acurrent", a[MCtime],", aproposed rejected=", a2,"outside of the prior"))
+      } else {
+        # to compute log-likelihood based on guess a2:
+        curpars[m]=a2	
+        lnew=myloglk14realtest(a1=curpars,data=data)
+        ## to compute M-H
+        if (m==14){
+          alpha=min(1,exp(lnew-lold)*mu/a2)
+        } else {
+          alpha=min(1,exp(lnew-lold))
+        }
+        u=runif(1)
+        #   print(paste("MCtime=", MCtime,", lold=",lold, ", lnew=",lnew, "likratio=",exp(lnew-lold) ))
+        if (u<=alpha){
+          curpars[m]=a2
+          count[m]=count[m]+1
+          lold=lnew #the proposal has become the current (old) stage 
+          #	print(paste("acurrent", a[MCtime],", aproposed accepted=", a2,", alpha=", alpha,", u=",u ))
+        } # end if
+        else{
+          curpars[m]=mu
+          #print(paste("acurrent", a[MCtime],", aproposed rejected=", a2,", alpha=", alpha,", u=",u ))
+        }# end else
+      } #end else
+      lnew=NA	 
+    }#end for m in v
+    
+    lnew=NA	
+    
     if (MCitr %% evk ==0){
       a=rbind(a,curpars)
     }
     
   } #end for (MCtime 1:n-1)
-  print(paste('acceptance rate=',count/n,'lold=',lold,'a0=',a0))
+  print(paste('acceptance rate=',count/(2*n),'lold=',lold,'a0=',a0))
   return(a)
 }

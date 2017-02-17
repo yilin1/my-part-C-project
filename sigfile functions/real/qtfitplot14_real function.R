@@ -8,11 +8,11 @@ qtfitplot14_real=function(data,mc,last=1000,spsize=100,predict=TRUE,tby=1,erv1=1
 	# note that you might notice that there is no m argument, since we are plotting for all the parameter predictions.
 	# updated 170201 no matter predict==TRUE or not, the same code. since i changed to real data structure.
 if (predict==TRUE){
-plot(data$Month,data$ratio,ylim=c(0,1),main=paste('quantile predictions','(',dim(mc)[1],'iterations',')'),ylab='Transcript BCR-ABL levels',xlab='Months')
+plot(data$Month,data$ratio,ylim=c(0,max(data$ratio)),main=paste('quantile predictions','(',dim(mc)[1],'iterations',')'),ylab='Transcript BCR-ABL levels',xlab='Months')
 } else{
 	#values=as.numeric(as.vector(data$ratio))
 	#getmax=max(data$ratio)
-	plot(data$Month,data$ratio,ylim=c(0,1),main=paste('quantile predictions','(',dim(mc)[1],'iterations',')'),ylab='Transcript BCR-ABL levels',xlab='Months')
+	plot(data$Month,data$ratio,ylim=c(0,max(data$ratio)),main=paste('quantile predictions','(',dim(mc)[1],'iterations',')'),ylab='Transcript BCR-ABL levels',xlab='Months')
 	}
 
 lat=lattice14_real(mc=mc,last=last,spsize=spsize,data=data)

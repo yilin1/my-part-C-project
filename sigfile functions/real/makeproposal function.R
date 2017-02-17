@@ -3,14 +3,16 @@ makeproposal=function(mc,k,d=14){
   #k is the base, also the number of bins
   #d is the dimension of our problem, default =14
   baseK=baseKmc(mc=mc,numbin=k,d=d)
-  pk=rep(1,(k^d)-1)
-  pk0=1
-  sm=sum(pk)+pk0
   if (d==1){ #d=1 implies it is a column that we are dealing with. in particular, it is for m=14, the rho.
    # and the baseK as the output from baseKmc will be a very long row (dim=1*num of iteration), transpose it now
     # so that the next step would not treat the whole row as a single number in base k with (num of iteration) that many digits.
      baseK=t(baseK)
   }
+  r=dim(baseK)[1]/(k^d)
+  pk=rep(r,(k^d)-1)
+  pk0=r
+  #sm=sum(pk)+pk0
+  
   for (i in 1:dim(baseK)[1]){
     base10=tobase10(row=baseK[i,],k=k)
     if (base10==0){
@@ -20,24 +22,47 @@ makeproposal=function(mc,k,d=14){
     }
   }
   pk[k^d]=pk0
-  pkhat=pk/(dim(baseK)[1]+sm)
+  pkhat=pk/(2*dim(baseK)[1])
   return(pkhat) #returns a vector of dimension 1*(k^d), specifying the proportion of points 
   #for that corresponding pattern.
 }
 
-# test
 
-mc=remissionfit
-d=14
-k=3
+# test just for mc[,14]
+mc=relap7fit2[1:3,14]
+dim(mc)
+d=1
+k=100000
+rho1=tobase10(baseK[1],k=k)
+rho1
+
+rho2=tobase10(baseK[2],k=k)
+
+rho2
+rho3=tobase10(baseK[3],k=k)
+rho3
+pkhat=makeproposal(mc=mc,k=k,d=d)
+which(pkhat==max(pkhat))
+pk[rho1]
+pkhat[rho1]
+
+
+
+# test
+mc=relap7fit2
+d=length(split3)
+k=k[3]
+mc=relap7fit2[1:3,1:5]
+d=5
+k=8
 pk=rep(1,((k^d)-1))
 pk0=1
-sm=sum(pk)+pk0
-baseKall=baseKmc(mc=mc,numbin=k)
+#sm=sum(pk)+pk0
+baseKall=baseKmc(mc=mc,numbin=k,d=d)
 baseK=baseKall[1:3,]
 #then run the for loop above
 pkhat=makeproposal(mc=mc,k=k,d=d)
-
+which(pkhat==max(pkhat))
 #baseK-1
 #r1
 r1=tobase10(baseK[1,],k=k)
