@@ -7,7 +7,7 @@ library(data.table)
 install.packages("digest")
 library(digest)
 source_data("https://github.com/yilin1/my-part-C-project/blob/0208/realtest's/remissionfit1(200%2Ck%3D1000)fuben.RData?raw=TRUE")
-source_data("https://github.com/yilin1/my-part-C-project/blob/0209/work%20images/coreimage0209.RData?raw=TRUE")
+source_data("https://github.com/yilin1/my-part-C-project/blob/0217/work%20images/coreimage0217.RData?raw=TRUE")
 erv2_remissionfit2=erv2_24
 erv2_remissionfit2[2]=0.22
 erv2_remissionfit2[3]=0.1
@@ -261,3 +261,38 @@ print(paste("a0="))
 print(a0)
 relap7fit280w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,a0=a0,n=2800000,k=1000,erv2=erv2_relap7fit280w2)
 sink()
+
+#using p25 in stats lib windows 0217
+p25=whichdata(25,home=FALSE)
+p26=whichdata(26,home=FALSE)
+
+plot(p25$Month,p25$ratio,ylim=c(0,1))
+plot(p26$Month,p26$ratio,ylim=c(0,1))
+var(p25$ratio) #0.06
+var(p26$ratio) #0.00917
+#chosen p25, as larger variance...?
+plotdata(p26,26)
+a0=rep(0.5,14)
+a0[14]=var(p25$ratio)
+erv2_relap25fit280w1=rep(0.01,14)
+erv2_relap25fit280w1[1]=0.1
+erv2_relap25fit280w1[2]=0.1
+erv2_relap25fit280w1[3]=0.15
+erv2_relap25fit280w1[4]=0.1
+erv2_relap25fit280w1[5]=0.1
+erv2_relap25fit280w1[6]=0.1
+erv2_relap25fit280w1[7]=0.1
+erv2_relap25fit280w1[8]=0.1
+erv2_relap25fit280w1[9]=0.07
+erv2_relap25fit280w1[10]=0.07
+erv2_relap25fit280w1[11]=0.1
+erv2_relap25fit280w1[12]=0.02
+erv2_relap25fit280w1[13]=0.02
+sink(file="relap25fit10w1sink(26w,k=1000)fuben")
+print(paste("erv2="))
+print(erv2_relap25fit280w1)
+print(paste("a0="))
+print(a0)
+relap7fit26w1=myMCMC14a_vtest_evk_realtestyesfuben(data=p25,v=1:14,a0=a0,n=260000,k=1000,erv2=erv2_relap25fit280w1)
+sink()
+

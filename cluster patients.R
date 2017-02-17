@@ -1,4 +1,4 @@
-rd=dragdata()
+rd=dragdata(home=FALSE)
 remisp=unique(rd[which(rd$outcome=="remission"),]$Patient.No)
 length(remisp)
 mode(remisp)
@@ -9,7 +9,43 @@ relapsp=unique(rd[which(rd$outcome=="relapse"),]$Patient.No)
 relapsp
 relapsdata=rd[which(rd$outcome=="relapse"),]
 relapsdata
+for (i in relapsp){
+  pi=whichdata(i,home=FALSE)
+  plotdata(data=pi,patientnum = i)
+}
+print("relapse")
+for (i in relapsp){
+  pi=whichdata(i,home=FALSE)
+  print(i)
+  print(pi$ratio)
+}
+cannotc=unique(rd[which(rd$outcome=="cannotclassify"),]$Patient.No)
+cannotc
+for (i in cannotc){
+  pi=whichdata(i,home=FALSE)
+  plotdata(data=pi,patientnum = i)
+}
+print("cannot classify")
+for (i in cannotc){
+  pi=whichdata(i,home=FALSE)
+  print(i)
+  print(pi$ratio)
+}
 
+# find out whose data has ratios >1
+morethan1=rd[unique(which(rd$ratio>1)),]$Patient.No
+for (i in morethan1){
+  pi=whichdata(i,home=FALSE)
+  print(i)
+  print(pi$ratio)
+}
+for (i in morethan1){
+  pi=whichdata(i,home=FALSE)
+  plotdata(data=pi,patientnum = i)
+}
+
+
+plotdata(all=TRUE)
 kmeans
 ?kmeans
 
@@ -19,8 +55,8 @@ dim(rd)
 months=minMonth:maxMonth
 howmany=c()
 for (month in minMonth:maxMonth){
-numpatient=length(rd[which(rd$Month==month),]$Patient.No)
-howmany=rbind(howmany,numpatient)
+  numpatient=length(rd[which(rd$Month==month),]$Patient.No)
+  howmany=rbind(howmany,numpatient)
 }
 c=cbind(months,howmany)
 names(as.data.frame(c))
