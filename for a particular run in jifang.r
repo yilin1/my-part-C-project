@@ -415,4 +415,34 @@ print(a0)
 relap7fit280w6=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,a0=a0,n=260000,k=1000,erv2=erv2_relap7fit280w6)
 sink()
 
+#using p25 in stats lib windows 0218 18:34
+p25=whichdata(25,home=FALSE)
+
+plot(p25$Month,p25$ratio,ylim=c(0,1))
+var(p25$ratio) #0.06
+a0=rep(0.5,14)
+a0[14]=var(p25$ratio)
+erv2_relap25fit280w2=rep(0.01,14)
+erv2_relap25fit280w2[1]=0.15
+erv2_relap25fit280w2[2]=0.15
+erv2_relap25fit280w2[3]=0.18
+erv2_relap25fit280w2[4]=0.15
+erv2_relap25fit280w2[5]=0.15
+erv2_relap25fit280w2[6]=0.15
+erv2_relap25fit280w2[7]=0.15
+erv2_relap25fit280w2[8]=0.15
+erv2_relap25fit280w2[9]=0.1
+erv2_relap25fit280w2[10]=0.1
+erv2_relap25fit280w2[11]=0.15
+erv2_relap25fit280w2[12]=0.08
+erv2_relap25fit280w2[13]=0.08
+erv2_relap25fit280w2[14]=0.08
+
+sink(file="relap25fit15w2sink(15w,k=1000)fuben")
+print(paste("erv2="))
+print(erv2_relap25fit280w2)
+print(paste("a0="))
+print(a0)
+relap25fit15w2=myMCMC14a_vtest_evk_realtestyesfuben(data=p25,v=1:14,a0=a0,n=150000,k=1000,erv2=erv2_relap25fit280w2)
+sink()
 
