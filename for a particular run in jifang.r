@@ -384,5 +384,35 @@ print(a0)
 relap7fit280w5=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,a0=a0,n=260000,k=1000,erv2=erv2_relap7fit280w5)
 sink()
 
+#07 0218 relap7fit280w6 18:12 (erv2 gaile, as w5 haishi acp rate too low)
+erv2_relap7fit280w6=rep(0.01,14)
+erv2_relap7fit280w6[1]=0.07
+erv2_relap7fit280w6[2]=0.07
+erv2_relap7fit280w6[3]=0.1
+erv2_relap7fit280w6[4]=0.07
+erv2_relap7fit280w6[5]=0.07
+erv2_relap7fit280w6[6]=0.07
+erv2_relap7fit280w6[7]=0.07
+erv2_relap7fit280w6[8]=0.07
+erv2_relap7fit280w6[9]=0.05
+erv2_relap7fit280w6[10]=0.05
+erv2_relap7fit280w6[11]=0.08
+erv2_relap7fit280w6[12]=0.01
+erv2_relap7fit280w6[13]=0.01
+#erv2_relap7fit280w4=erv2_relap7fit280w3
+#erv2_relap7fit280w5=erv2_relap7fit280w3
+
+p7=whichdata(7,home=FALSE)
+dim(p7)
+plotdata(p7,patientnum=7)
+a0=rep(0.5,14)
+a0[14]=var(p7$ratio)
+sink(file="relap7fit280w6sink(26W,k=1000)fuben")
+print(paste("erv2="))
+print(erv2_relap7fit280w6)
+print(paste("a0="))
+print(a0)
+relap7fit280w6=myMCMC14a_vtest_evk_realtestyesfuben(data=p7,v=1:14,a0=a0,n=260000,k=1000,erv2=erv2_relap7fit280w6)
+sink()
 
 
