@@ -1,4 +1,5 @@
 rd=dragdata(home=FALSE)
+rd=dragdata()
 remisp=unique(rd[which(rd$outcome=="remission"),]$Patient.No)
 length(remisp)
 mode(remisp)
@@ -10,7 +11,7 @@ relapsp
 relapsdata=rd[which(rd$outcome=="relapse"),]
 relapsdata
 for (i in relapsp){
-  pi=whichdata(i,home=FALSE)
+  pi=whichdata(i,home=TRUE)
   plotdata(data=pi,patientnum = i)
 }
 print("relapse")
@@ -22,7 +23,7 @@ for (i in relapsp){
 cannotc=unique(rd[which(rd$outcome=="cannotclassify"),]$Patient.No)
 cannotc
 for (i in cannotc){
-  pi=whichdata(i,home=FALSE)
+  pi=whichdata(i,home=TRUE)
   plotdata(data=pi,patientnum = i)
 }
 print("cannot classify")
